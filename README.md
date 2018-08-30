@@ -1,1 +1,1 @@
-# MERN-STARTER-APP
+# MERN Starter App
