@@ -1,0 +1,40 @@
+{
+  "name": "mern-starter-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "jquery": "^3.3.1",
+    "morgan": "~1.9.0",
+    "popper.js": "^1.14.4",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "reactstrap": "^6.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "nodemon": "^1.18.4"
+  },
+  "scripts": {
+    "sc": "react-scripts start",
+    "ss": "nodemon server/app.js",
+    "dev": "concurrently \"npm run sc\" \"npm run ss\"",
+    "start": "node server/app.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:4000",
+      "proxyTimeout": 3000
+    }
+  }
+}
