@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 
 const Home = () => (
     <Container>
-        <h1>Home Page</h1>
+        <h4>Welcome to Admin dashboard!</h4>
     </Container>
 )
 

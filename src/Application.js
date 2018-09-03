@@ -1,20 +1,30 @@
 import React from 'react';
-import Header from "./components/Header";
-import Router from './Router'
+import { connect } from 'react-redux';
+import Router from './Router';
+import { loadUser } from './store/authReducer'
+
+const mapDispatchToProps = dispatch => ({
+    load: () => {
+      dispatch(loadUser())
+    }
+})
 
 class Application extends React.Component{
     constructor(props) {
         super(props)
     }
 
+    componentWillMount() {
+        this.props.load()
+    }
+
     render(){
         return (
             <div>
-                <Header/>
-                <Router/>
+                <Router history={this.props.history}/>
             </div>
         )
     }
 }
 
-export default Application
+export default connect(null, mapDispatchToProps)(Application)

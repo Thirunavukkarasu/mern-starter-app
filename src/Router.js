@@ -1,17 +1,26 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { Route } from 'react-router-dom'
+import {ConnectedRouter} from 'react-router-redux'
+
+import SwitchWithNotFound from './components/router/SwitchNotFound'
+import requireUser from './components/router/requireUser'
+
+import Header from './components/Header'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
 
-const Router = () => (
-  <main>
-    <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route exact path='/signin' component={SignIn}/>
-      <Route exact path='/signup' component={SignUp}/>
-    </Switch>
-  </main>
+const Router = ({ history }) => (
+  <ConnectedRouter history={history}>
+    <Fragment>
+      <Header />
+      <main>
+        <SwitchWithNotFound>
+          <Route exact path='/' component={SignIn} />
+          <Route exact path='/home' component={requireUser(Home)} />
+        </SwitchWithNotFound>
+      </main>
+    </Fragment>
+  </ConnectedRouter>
 )
 
 export default Router

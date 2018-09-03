@@ -81,3 +81,30 @@ h1 .subtitle {
 
 .text-danger, .text-danger:hover {
   color: #FF4A55 !important; }
+
+/**
+  Error Page
+**/
+.content {
+  min-height: 250px;
+  padding: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px; }
+  .content .error-page {
+    width: 600px;
+    margin: 20px auto 0; }
+    .content .error-page .text-yellow {
+      color: #f39c12 !important; }
+    .content .error-page .headline {
+      float: left;
+      font-size: 100px;
+      font-weight: 300;
+      margin-top: -20px; }
+    .content .error-page .error-content {
+      margin-left: 190px;
+      display: block; }
+      .content .error-page .error-content h3 {
+        font-weight: 300;
+        font-size: 25px; }

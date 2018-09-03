@@ -3,17 +3,20 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class Example extends React.Component {
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+})
+
+class Header extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,40 +31,30 @@ export default class Example extends React.Component {
     });
   }
   render() {
+    const { user } = this.props
+    const permissions = (user && user.permissions) || []
+
     return (
       <div>
-        <Navbar color="success" dark expand="md">
-          <Link to="/" class="navbar-brand">MERN starter app</Link>
+        <Navbar color="primary" dark expand="md">
+          <Link to="/" className="navbar-brand">MERN Starter App</Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link to="/signin" class="nav-link">SignIn</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/signup" class="nav-link">SignUp</Link>
-              </NavItem>
+            { user && <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Profile
+                  {user.google.email}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Settings
-                  </DropdownItem>
-                  <DropdownItem>
-                    Account
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Logout
-                  </DropdownItem>
+                  <a className="dropdown-item" href="/api/auth/signout">Logout</a>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
+            </Nav>}
           </Collapse>
         </Navbar>
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps)(Header)
